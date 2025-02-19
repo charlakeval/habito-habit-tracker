@@ -1,10 +1,13 @@
-import React from 'react'
-import { Image, StyleSheet, Text, View } from 'react-native'
+import React, { useState } from 'react'
+import { Button, Image, StyleSheet, Text, View } from 'react-native'
 const calender = require("../../assets/images/calender.png")
 const bell = require("../../assets/images/bell.png")
-const profie_emoji = require("../../assets/images/profile_emoji_home_header.png")
 
 const Header = () => {
+    const [toggleToday, setToggleToday] = useState<boolean>(true)
+    const [toggleClub, setToggleClub] = useState<boolean>(false)
+
+
     return (
         <View style={styles.header_main}>
             <View style={styles.headerBar}>
@@ -14,18 +17,24 @@ const Header = () => {
 
             <View style={styles.profile_info}>
                 <View style={styles.profile_info_first_view}>
-                    <Text style={styles.profile_header_text}>Hi, Mert👋</Text>
+                    <Text style={styles.profile_header_text}>Hi, Aadesh👋</Text>
                     <Text style={styles.profile_info_small_text}>Let's make habits together!</Text>
                 </View>
                 <Image source={bell} height={48} width={48} />
             </View>
 
             <View style={styles.today_club}>
-                <Text style={styles.today}>Today</Text>
-                <Text style={styles.club}>Clubs</Text>
+                <Text style={toggleToday ? styles.today : styles.club} onPress={() => {
+                    setToggleToday(true)
+                    setToggleClub(false)
+                }}>Today</Text>
+                <Text style={toggleClub ? styles.today : styles.club} onPress={() => {
+                    setToggleClub(true)
+                    setToggleToday(false)
+                }}> Clubs</Text>
             </View>
 
-        </View>
+        </View >
     )
 }
 
@@ -36,17 +45,14 @@ const styles = StyleSheet.create({
     header_main: {
         paddingHorizontal: 24,
         paddingVertical: 12,
-        // backgroundColor: "yellow"
     },
     headerBar: {
-        // backgroundColor: "red",
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",
         marginBottom: 12
     },
     profile_info: {
-        // backgroundColor: "lightgreen",
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
@@ -54,7 +60,6 @@ const styles = StyleSheet.create({
 
     },
     profile_info_first_view: {
-        // backgroundColor: "green",
     },
     profile_header_text: {
         fontSize: 20,
@@ -76,7 +81,6 @@ const styles = StyleSheet.create({
     },
     today: {
         backgroundColor: "white",
-        // backgroundColor: "red",
         borderRadius: "30px",
         width: "50%",
         fontSize: 18,
@@ -86,7 +90,6 @@ const styles = StyleSheet.create({
         paddingVertical: 5
     },
     club: {
-        // backgroundColor: "grey",
         width: "50%",
         fontSize: 18,
         color: "#fff",
