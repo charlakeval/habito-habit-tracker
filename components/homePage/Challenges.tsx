@@ -49,7 +49,6 @@ export default Challenges
 
 const styles = StyleSheet.create({
     challenges_main: {
-        // backgroundColor: "red",
         marginTop: 16
     },
     header_view: {

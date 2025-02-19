@@ -6,7 +6,7 @@ import 'react-circular-progressbar/dist/styles.css';
 const Habits = () => {
     const percentage = 66;
     return (
-        <View style={styles.habits_main}>
+        <>
             <View style={styles.header_view}>
                 <Text style={styles.header}>Habits</Text>
                 <Text style={styles.view}>VIEW ALL</Text>
@@ -19,12 +19,11 @@ const Habits = () => {
                             <CircularProgressbar
                                 value={percentage}
                                 styles={buildStyles({
-                                    textSize: "0px", // Hide text
+                                    textSize: "0px",
                                     pathColor: "blue",
                                     trailColor: "#e0e0e0",
                                 })}
                             />
-                            {/* Emoji Icon Overlay */}
                             <View style={styles.iconContainer}>
                                 <Text style={styles.emoji}>💧</Text>
                             </View>
@@ -36,7 +35,6 @@ const Habits = () => {
                     </View>
                 </View>
 
-                {/* Right Section with Friends and Add Button */}
                 <View style={styles.rightSection}>
                     <View style={styles.avatarContainer}>
                         <Image
@@ -57,17 +55,13 @@ const Habits = () => {
                     </TouchableOpacity>
                 </View>
             </View>
-        </View>
+        </>
     )
 }
 
 export default Habits
 
 const styles = StyleSheet.create({
-    habits_main: {
-        // backgroundColor: "red",
-        // marginTop: 4
-    },
     header_view: {
         display: "flex",
         alignItems: "center",
@@ -172,5 +166,6 @@ const styles = StyleSheet.create({
     plus: {
         fontSize: 20,
         color: "#000",
+        marginTop: -3
     },
 })
