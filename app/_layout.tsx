@@ -47,6 +47,13 @@ const _layout = () => {
                     headerShown: false,
                 }}
             />
+            <Tabs.Screen
+                name='settingsScreen'
+                options={{
+                    title: "Setting",
+                    headerShown: false,
+                }}
+            />
         </Tabs>
     )
 }
