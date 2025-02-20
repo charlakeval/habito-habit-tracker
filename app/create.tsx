@@ -1,11 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
+import CreatePage from '@/components/createPage'
 
 const Create = () => {
     return (
-        <View>
-            <Text>Create</Text>
-        </View>
+        <>
+            <CreatePage />
+        </>
     )
 }
 

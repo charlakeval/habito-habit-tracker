@@ -1,6 +1,6 @@
 import React from 'react'
 import { Tabs } from 'expo-router'
-import TabBar from '@/components/TabBar'
+import TabBar from '@/components/tabBar/TabBar'
 
 const _layout = () => {
     return (
@@ -37,6 +37,13 @@ const _layout = () => {
                 name='profile'
                 options={{
                     title: "Profile",
+                    headerShown: false,
+                }}
+            />
+            <Tabs.Screen
+                name='habitForm'
+                options={{
+                    title: "Habit Form",
                     headerShown: false,
                 }}
             />
