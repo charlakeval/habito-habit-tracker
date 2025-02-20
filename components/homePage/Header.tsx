@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
-import { Button, Image, StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 const calender = require("../../assets/images/calender.png")
 const bell = require("../../assets/images/bell.png")
 
 const Header = () => {
-    const [toggleToday, setToggleToday] = useState<boolean>(true)
-    const [toggleClub, setToggleClub] = useState<boolean>(false)
-
+    const [toggleTodayClub, settoggleTodayClub] = useState("Today");
 
     return (
         <View style={styles.header_main}>
@@ -16,24 +14,33 @@ const Header = () => {
             </View>
 
             <View style={styles.profile_info}>
-                <View style={styles.profile_info_first_view}>
+                <View>
                     <Text style={styles.profile_header_text}>Hi, Aadesh👋</Text>
                     <Text style={styles.profile_info_small_text}>Let's make habits together!</Text>
                 </View>
                 <Image source={bell} height={48} width={48} />
             </View>
 
-            <View style={styles.today_club}>
-                <Text style={toggleToday ? styles.today : styles.club} onPress={() => {
-                    setToggleToday(true)
-                    setToggleClub(false)
-                }}>Today</Text>
-                <Text style={toggleClub ? styles.today : styles.club} onPress={() => {
-                    setToggleClub(true)
-                    setToggleToday(false)
-                }}> Clubs</Text>
+            <View style={styles.habitTypeContainer}>
+                <TouchableOpacity
+                    style={[
+                        styles.habitTypeButton,
+                        toggleTodayClub === "Today" && styles.activeButton,
+                    ]}
+                    onPress={() => settoggleTodayClub("Today")}
+                >
+                    <Text style={toggleTodayClub === "Today" ? styles.activeText : styles.toggleText}>Today</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={[
+                        styles.habitTypeButton,
+                        toggleTodayClub === "Club" && styles.activeButton,
+                    ]}
+                    onPress={() => settoggleTodayClub("Club")}
+                >
+                    <Text style={toggleTodayClub === "Club" ? styles.activeText : styles.toggleText}>Club</Text>
+                </TouchableOpacity>
             </View>
-
         </View >
     )
 }
@@ -59,8 +66,6 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
 
     },
-    profile_info_first_view: {
-    },
     profile_header_text: {
         fontSize: 20,
         fontWeight: "bold",
@@ -71,31 +76,33 @@ const styles = StyleSheet.create({
         letterSpacing: 0.4,
         fontSize: 16
     },
-    today_club: {
+    habitTypeContainer: {
         marginTop: 12,
         backgroundColor: "#e3e4e6",
         borderWidth: 1,
         borderColor: "#e3e4e6",
         borderRadius: "30px",
         flexDirection: "row",
+        padding: 3
     },
-    today: {
-        backgroundColor: "white",
-        borderRadius: "30px",
-        width: "50%",
-        fontSize: 18,
-        color: "#166af2",
-        letterSpacing: 0.4,
-        textAlign: "center",
-        paddingVertical: 5
+    habitTypeButton: {
+        flex: 1,
+        padding: 10,
+        alignItems: "center",
+        borderRadius: 10,
     },
-    club: {
-        width: "50%",
-        fontSize: 18,
-        color: "#fff",
-        letterSpacing: 0.4,
-        textAlign: "center",
-        borderRadius: "30px",
-        paddingVertical: 5
-    }
+    activeButton: {
+        backgroundColor: "#007AFF",
+        borderRadius: 30
+    },
+    toggleText: {
+        fontSize: 16,
+        fontWeight: "bold",
+        color: "gray",
+    },
+    activeText: {
+        fontSize: 16,
+        fontWeight: "bold",
+        color: "white",
+    },
 });

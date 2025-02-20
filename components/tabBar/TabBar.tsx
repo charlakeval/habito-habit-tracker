@@ -18,20 +18,20 @@ interface TabBarProps {
 const TabBar: React.FC<TabBarProps> = ({ state, descriptors, navigation }) => {
     const { colors } = useTheme();
 
-    const icons = {
-        index: (props: any) => <Entypo name="home" size={24} color="rgb(28, 28, 30)" {...props} />,
-        compass: (props: any) => <Entypo name="compass" size={24} color="rgb(28, 28, 30)" {...props} />,
-        medal: (props: any) => <FontAwesome5 name="medal" size={24} color="rgb(28, 28, 30)" {...props} />,
-        profile: (props: any) => <FontAwesome name="user" size={24} color="rgb(28, 28, 30)" {...props} />,
-        create: (props: any) => <AntDesign name="pluscircleo" size={40} color="rgb(78, 78, 241)" {...props} />,
-    }
+    const icons: Record<IconKeys, (props: any) => JSX.Element> = {
+        index: (props) => <Entypo name="home" size={24} {...props} />,
+        compass: (props) => <Entypo name="compass" size={24} {...props} />,
+        medal: (props) => <FontAwesome5 name="medal" size={24} {...props} />,
+        profile: (props) => <FontAwesome name="user" size={24} {...props} />,
+        create: (props) => <AntDesign name="pluscircleo" size={40} {...props} />,
+    };
 
     return (
         <View style={styles.tabBar}>
             {state.routes.map((route: any, index: number) => {
                 const { options } = descriptors[route.key];
 
-                if (['_sitemap', '+not-found'].includes(route.name)) return null
+                if (['_sitemap', '+not-found', 'habitForm'].includes(route.name)) return null;
 
                 const isFocused = state.index === index;
 
@@ -54,6 +54,8 @@ const TabBar: React.FC<TabBarProps> = ({ state, descriptors, navigation }) => {
                     });
                 };
 
+                const IconComponent = icons[route.name as IconKeys] || (() => <Text>❓</Text>);
+
                 return (
                     <TouchableOpacity
                         key={route.key}
@@ -65,13 +67,12 @@ const TabBar: React.FC<TabBarProps> = ({ state, descriptors, navigation }) => {
                         onLongPress={onLongPress}
                         style={styles.tabBarItem}
                     >
-                        {
-                            icons[route.name as IconKeys]({
-                                color: route.name === "create"
-                                    ? "rgb(78, 78, 241)"
-                                    : (isFocused ? colors.primary : colors.text)
-                            })
-                        }
+                        <IconComponent
+                            color={route.name === "create"
+                                ? "rgb(78, 78, 241)"
+                                : (isFocused ? colors.primary : colors.text)
+                            }
+                        />
                     </TouchableOpacity>
                 );
             })}
@@ -79,13 +80,14 @@ const TabBar: React.FC<TabBarProps> = ({ state, descriptors, navigation }) => {
     );
 };
 
+
 export default TabBar;
 
 
 const styles = StyleSheet.create({
     tabBar: {
         position: "absolute",
-        bottom: 25,
+        bottom: 0,
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
