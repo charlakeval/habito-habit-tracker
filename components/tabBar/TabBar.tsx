@@ -7,7 +7,7 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 
-type IconKeys = 'index' | 'compass' | 'medal' | 'profile' | 'create';
+type IconKeys = 'index' | 'compass' | 'medal' | 'profile' | 'create' | 'settingsScreen';
 
 interface TabBarProps {
     state: TabNavigationState;
@@ -31,7 +31,7 @@ const TabBar: React.FC<TabBarProps> = ({ state, descriptors, navigation }) => {
             {state.routes.map((route: any, index: number) => {
                 const { options } = descriptors[route.key];
 
-                if (['_sitemap', '+not-found', 'habitForm'].includes(route.name)) return null;
+                if (['_sitemap', '+not-found', 'habitForm', 'settingsScreen'].includes(route.name)) return null;
 
                 const isFocused = state.index === index;
 
