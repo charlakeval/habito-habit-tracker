@@ -38,11 +38,11 @@ const Habits = () => {
                 <View style={styles.rightSection}>
                     <View style={styles.avatarContainer}>
                         <Image
-                            source={{ uri: "https://randomuser.me/api/portraits/men/1.jpg" }}
+                            source={require("../../assets/images/profile.jpg")}
                             style={styles.avatar}
                         />
                         <Image
-                            source={{ uri: "https://randomuser.me/api/portraits/women/1.jpg" }}
+                            source={require("../../assets/images/profile.jpg")}
                             style={[styles.avatar, { marginLeft: -10 }]}
                         />
                         <View style={styles.moreFriends}>

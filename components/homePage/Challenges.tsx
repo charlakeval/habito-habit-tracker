@@ -1,6 +1,7 @@
 import React from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
 
+
 const Challenges = () => {
     const progress = 50;
     return (
@@ -26,11 +27,11 @@ const Challenges = () => {
                     <Text style={styles.friendsJoined}>2 friends joined</Text>
                     <View style={styles.avatarContainer}>
                         <Image
-                            source={{ uri: "https://randomuser.me/api/portraits/women/1.jpg" }}
+                            source={require("../../assets/images/profile.jpg")}
                             style={[styles.avatar, { zIndex: 2 }]}
                         />
                         <Image
-                            source={{ uri: "https://randomuser.me/api/portraits/men/1.jpg" }}
+                            source={require("../../assets/images/profile.jpg")}
                             style={[styles.avatar, { marginLeft: -10, zIndex: 1 }]}
                         />
                     </View>
