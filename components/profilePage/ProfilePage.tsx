@@ -2,6 +2,7 @@ import { useRouter } from "expo-router";
 import React from "react";
 import { View, Text, Image, TouchableOpacity, FlatList, StyleSheet } from "react-native";
 
+
 const ProfilePage = () => {
     const router = useRouter()
     const activities = [
@@ -26,7 +27,7 @@ const ProfilePage = () => {
             <Text style={styles.profile_text}>Your Profile </Text>
             {/* Profile Header */}
             <View style={styles.header}>
-                <Image source={{ uri: "https://randomuser.me/api/portraits/women/1.jpg" }} style={styles.avatar} />
+                <Image source={require("../../assets/images/profile.jpg")} style={styles.avatar} />
                 <View>
                     <Text style={styles.name}>Aadesh Shinde</Text>
                     <Text style={styles.points}>🏅 1452 Points</Text>
